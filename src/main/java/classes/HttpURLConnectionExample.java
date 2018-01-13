@@ -2,17 +2,13 @@ package classes;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import sun.rmi.runtime.Log;
 
+import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
-
-
-import javax.net.ssl.HttpsURLConnection;
 
 /**
  * Created by Valera on 11.01.2018.
@@ -34,29 +30,28 @@ public class HttpURLConnectionExample {
         System.out.println("2.Non-cash exchange rate");
         int type = keyboard.nextInt();
         if(type == 1)
-            http.sendGet(URL_PRIVATE + "11");
+            http.sendGet( "11");
         else if(type == 2)
-            http.sendGet(URL_PRIVATE + "5");
+            http.sendGet(  "5");
         else
             System.out.println("incorrect type!");
     }
 
     // HTTP GET request
-    private void sendGet(String url) throws Exception {
-//        String url = "https://jsonplaceholder.typicode.com/posts/1";
-        URL obj = new URL(url);
+    public List<Private> sendGet(String type) throws Exception {
+
+        URL obj = new URL(URL_PRIVATE+type);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", USER_AGENT);
         int responseCode = con.getResponseCode();
-        System.out.println("\nSending 'GET' request to URL : " + url);
+//        System.out.println("\nSending 'GET' request to URL : " + url);
         System.out.println("Response Code : " + responseCode);
         ObjectMapper objectMapper = new ObjectMapper();
         String result = this.readInputStreamToString(con);
+        System.out.println(result);
         List<Private> listPrivate = objectMapper.readValue(result, new TypeReference<List<Private>>(){});
-        System.out.println(listPrivate);
-
-
+        return listPrivate;
     }
 
     private String readInputStreamToString(HttpURLConnection connection) {
