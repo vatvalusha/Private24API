@@ -1,7 +1,21 @@
 package classes.interfaceDAO;
 
+import classes.entity.User;
+import com.mongodb.DBObject;
+
+import java.util.List;
+
 /**
  * Created by Valera on 16.01.2018.
  */
-public class InformationDAO {
+public interface InformationDAO {
+
+    List<User> getAllUsers();
+
+    User getUser(String name);
+
+    User deleteUser(String Id);
+
+    User insertUser(User newUser);
+
 }
