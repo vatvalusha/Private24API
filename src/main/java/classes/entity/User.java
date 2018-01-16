@@ -8,6 +8,7 @@ public class User {
     String name;
     int age;
     String password;
+    Oid _id;
 
     public String getName() {
         return name;
@@ -31,5 +32,36 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Oid get_id() {
+        return _id;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", password='" + password + '\'' +
+                ", _id=" + _id +
+                '}';
+    }
+
+    public void set_id(Oid _id) {
+        this._id = _id;
+    }
+
+    public class Oid {
+        String $oid;
+
+        public String get$oid() {
+            return $oid;
+        }
+
+        public void set$oid(String $oid) {
+            this.$oid = $oid;
+        }
+
     }
 }
