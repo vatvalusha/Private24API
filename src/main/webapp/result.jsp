@@ -30,6 +30,7 @@
     </head>
     <body align="center">
     <table>
+        VALERA: <%=eList.get(0)%>
         <c:if test="${not empty eList}">
             <div>
                 <table border="1" cellpadding="5">
