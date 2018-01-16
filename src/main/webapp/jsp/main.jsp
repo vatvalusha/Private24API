@@ -1,18 +1,24 @@
 <%--
   Created by IntelliJ IDEA.
-  User: valeriyartemenko
-  Date: 15.01.18
-  Time: 22:42
+  User: new
+  Date: 16.01.2018
+  Time: 12:37
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head><title>Welcome</title></head>
-<body>
-<h3>Welcome</h3>
-<hr/>
-${user}, hello!
-<hr/>
-<a href="controller?command=logout">Logout</a>
-</body>
+<in>
+    <h3>Welcome</h3>
+    <hr/>
+    ${user}, hello!
+    <hr/>
+    <body>
+    <form name="loginForm" method="POST" action="controller">
+        <a href="controller?command=logout">Logout</a>
+        <input type="hidden" name="command" value="users"/>
+        <input type="submit" value="Show Users"/>
+    </form>
+    <%--<a href="controller?command=users">List Users</a>--%>
+    </body>
 </html>

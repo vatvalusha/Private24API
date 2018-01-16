@@ -1,5 +1,7 @@
 package classes.servlet.Commands;
 
+import classes.servlet.logiHandle.LoginLogic;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -12,18 +14,18 @@ public class LoginCommand implements ActionCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page = null;
-// извлечение из запроса логина и пароля
         String login = request.getParameter(PARAM_NAME_LOGIN);
         String pass = request.getParameter(PARAM_NAME_PASSWORD);
-// проверка логина и пароля
         if (LoginLogic.checkLogin(login, pass)) {
-            request.setAttribute("user", login);
-// определение пути к main.jsp
-            page = ConfigurationManager.getProperty("path.page.main");
+            request.getSession().setAttribute("user", login);
+
+//            page = ConfigurationManager.getProperty("path.page.main");
+            page = "/jsp/main.jsp";
         } else {
-            request.setAttribute("errorLoginPassMessage",
-                    MessageManager.getProperty("message.loginerror"));
-            page = ConfigurationManager.getProperty("path.page.login");
+//            request.setAttribute("errorLoginPassMessage", MessageManager.getProperty("message.loginerror"));
+            request.setAttribute("errorLoginPassMessage", "Incorrect login or password.");
+//            page = ConfigurationManager.getProperty("path.page.login");
+            page = "/jsp/login.jsp";
         }
         return page;
     }

@@ -1,9 +1,12 @@
 package classes;
 
+import classes.MongoDAO.MongoInformation;
+import classes.dao.MongoDBConnection;
 import classes.entity.User;
+import classes.servlet.logiHandle.UserLogic;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
@@ -14,7 +17,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Created by Valera on 11.01.2018.
@@ -27,19 +29,44 @@ public class HttpURLConnectionExample {
 
     public static void main(String[] args) throws Exception {
 
-       MongoDBConnection mongo = MongoDBConnection.getInstance();
-       DBCollection dbCollection = mongo.getCollection();
-//        DBObject query = new BasicDBObject("name", "Valera");
-//        DBCursor cursor = dbCollection.find(query);
+//       MongoDBConnection mongo = MongoDBConnection.getInstance();
+//        MongoInformation mongoInformation = new MongoInformation();
+//        List<User> users  = mongoInformation.getAllUsers();
+//        for(User user :users){
+//            System.out.println(user);
+//        }
+//
+//       DB database = mongo.getCollection();
+//        DBCollection dbCollection = database.getCollection("information");
+////        DBObject query = new BasicDBObject("name", "Valera");
+////        DBCursor cursor = dbCollection.find(query);
+//
+//        DBCursor cursor = dbCollection.find();
+//        List<DBObject> allRecords = new ArrayList<DBObject>();
+//        while (cursor.hasNext()) {
+//            DBObject obj = cursor.next();
+//            allRecords.add(obj);
+//            //do your thing
+//        }
+//        for(DBObject object : allRecords){
+//            System.out.println(object);
+//        }
 
-        DBCursor cursor = dbCollection.find();
-        List<DBObject> allRecords = new ArrayList<DBObject>();
-        while (cursor.hasNext()) {
-            DBObject obj = cursor.next();
-            allRecords.add(obj);
-            //do your thing
-        }
-        System.out.println(allRecords);
+        MongoInformation mongoInformation = new MongoInformation();
+        System.out.println("USER IS : " + mongoInformation.deleteUser("Valera"));
+//
+//        List<User> users = UserLogic.allUsers(allRecords);
+//        for(User user : users){
+//            System.out.println(user.getName());
+//            System.out.println(user.getAge());
+//            System.out.println(user.getPassword());
+////            System.out.println(user.);
+//        }
+
+//        for(DBObject object : allRecords){
+//            System.out.println(object);
+//        }
+//        System.out.println(allRecords);
 
 //        System.out.println(dbCollection.findOne());
 //        String url = null;
@@ -61,7 +88,7 @@ public class HttpURLConnectionExample {
     // HTTP GET request
     public List<Private> sendGet(String type) throws Exception {
 
-        URL obj = new URL(URL_PRIVATE+type);
+        URL obj = new URL(URL_PRIVATE + type);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", USER_AGENT);
@@ -71,7 +98,8 @@ public class HttpURLConnectionExample {
         ObjectMapper objectMapper = new ObjectMapper();
         String result = this.readInputStreamToString(con);
         System.out.println(result);
-        List<Private> listPrivate = objectMapper.readValue(result, new TypeReference<List<Private>>(){});
+        List<Private> listPrivate = objectMapper.readValue(result, new TypeReference<List<Private>>() {
+        });
         return listPrivate;
     }
 
@@ -88,17 +116,14 @@ public class HttpURLConnectionExample {
                 sb.append(inputLine);
             }
             result = sb.toString();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("same problems");
             result = null;
-        }
-        finally {
+        } finally {
             if (is != null) {
                 try {
                     is.close();
-                }
-                catch (IOException e) {
+                } catch (IOException e) {
                     System.out.println("Error closing InputStream");
 //                    Log.i(TAG, "Error closing InputStream");
                 }

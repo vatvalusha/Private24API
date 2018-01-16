@@ -1,7 +1,7 @@
 package classes.servlet.Commands;
 
 /**
- * Created by valeriyartemenko on 15.01.18.
+ * Created by Valera on 16.01.2018.
  */
 public enum CommandEnum {
     LOGIN {
@@ -13,9 +13,14 @@ public enum CommandEnum {
         {
             this.command = new LogoutCommand();
         }
+    },
+    USERS {
+        {
+            this.command = new Users();
+        }
     };
-
     ActionCommand command;
+
     public ActionCommand getCurrentCommand() {
         return command;
     }
