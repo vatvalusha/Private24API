@@ -6,12 +6,13 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by Valera on 15.01.2018.
  */
-public class LogoutCommand implements Command {
-
-
+public class LogoutCommand implements ActionCommand {
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String execute(HttpServletRequest request) {
+//        String page = ConfigurationManager.getProperty("path.page.index");
+        String page = "/index.jsp";
+// уничтожение сессии
         request.getSession().invalidate();
-        return "index";
+        return page;
     }
 }
