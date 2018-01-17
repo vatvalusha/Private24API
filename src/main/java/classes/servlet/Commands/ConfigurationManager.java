@@ -7,7 +7,9 @@ import java.util.ResourceBundle;
  * Created by Valera on 15.01.2018.
  */
 public class ConfigurationManager {
-    private final static ResourceBundle resourceBundle = ResourceBundle.getBundle("C:\\Users\\new\\IdeaProjects\\Private Bank\\src\\main\\resources\\config_en", Locale.ENGLISH);
+    static Locale en_US = new Locale("en", "US");
+    Locale defaultLocale = Locale.getDefault();
+    private final static ResourceBundle resourceBundle = ResourceBundle.getBundle("config");
 
     private ConfigurationManager(){}
 
