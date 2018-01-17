@@ -14,8 +14,10 @@ public interface InformationDAO {
 
     User getUser(String name);
 
-    User deleteUser(String Id);
+    void deleteUser(String Id);
 
     User insertUser(User newUser);
+
+    void updateUser(User newUser);
 
 }
