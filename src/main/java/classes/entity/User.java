@@ -10,6 +10,20 @@ public class User {
     String password;
     Oid _id;
 
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
+    public User(String name, String password, int age) {
+        this.name = name;
+        this.age = age;
+        this.password = password;
+    }
+
+    public User() {
+    }
+
     public String getName() {
         return name;
     }
