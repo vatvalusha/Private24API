@@ -10,6 +10,7 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+import org.ietf.jgss.Oid;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
@@ -29,46 +30,29 @@ public class HttpURLConnectionExample {
 
     public static void main(String[] args) throws Exception {
 
-//       MongoDBConnection mongo = MongoDBConnection.getInstance();
-//        MongoInformation mongoInformation = new MongoInformation();
-//        List<User> users  = mongoInformation.getAllUsers();
-//        for(User user :users){
-//            System.out.println(user);
-//        }
-//
-//       DB database = mongo.getCollection();
-//        DBCollection dbCollection = database.getCollection("information");
-////        DBObject query = new BasicDBObject("name", "Valera");
-////        DBCursor cursor = dbCollection.find(query);
-//
-//        DBCursor cursor = dbCollection.find();
-//        List<DBObject> allRecords = new ArrayList<DBObject>();
-//        while (cursor.hasNext()) {
-//            DBObject obj = cursor.next();
-//            allRecords.add(obj);
-//            //do your thing
-//        }
-//        for(DBObject object : allRecords){
-//            System.out.println(object);
-//        }
+        User user = new User();
+        user.setAge(40);
+        user.setName("Vovan");
+        user.setPassword("security");
+        User.Oid ll = user.new Oid();
+        ll.set$oid("5a5f2c50e2f90c3dcc538c54");
+        user.set_id(ll);
 
         MongoInformation mongoInformation = new MongoInformation();
-        System.out.println("USER IS : " + mongoInformation.deleteUser("Valera"));
-//
-//        List<User> users = UserLogic.allUsers(allRecords);
-//        for(User user : users){
-//            System.out.println(user.getName());
-//            System.out.println(user.getAge());
-//            System.out.println(user.getPassword());
-////            System.out.println(user.);
-//        }
+        System.out.println(mongoInformation.getAllUsers());
+        mongoInformation.updateUser(user);
+        System.out.println(mongoInformation.getAllUsers());
 
-//        for(DBObject object : allRecords){
-//            System.out.println(object);
-//        }
-//        System.out.println(allRecords);
+//        System.out.println(user + user.get_id().get$oid());
+//        System.out.println(mongoInformation.insertUser(user));
+//        System.out.println(mongoInformation.getAllUsers());
 
-//        System.out.println(dbCollection.findOne());
+//        int size = mongoInformation.getAllUsers().size();
+//        mongoInformation.deleteUser(mongoInformation.getAllUsers().get(size-1).get_id().get$oid());
+//        mongoInformation.deleteUser(mongoInformation.getAllUsers().get(size-2).get_id().get$oid());
+//        System.out.println(mongoInformation.getAllUsers().get(size-1));
+
+
 //        String url = null;
 //        HttpURLConnectionExample http = new HttpURLConnectionExample();
 //
