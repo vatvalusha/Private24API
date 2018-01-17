@@ -23,6 +23,7 @@
             <h1>Sign Up</h1>
             <p>Please fill in this form to create an account.</p>
             <hr>
+            <input type="hidden" name="command" value="registration"/>
             <label><b>Email</b></label>
             <input type="text" placeholder="Enter Email" name="email" required>
 
@@ -35,12 +36,18 @@
             <label>
                 <input type="checkbox" checked="checked" style="margin-bottom:15px"> Remember me
             </label>
+            ${errorLoginPassMessage}
+            <br/>
+            ${wrongAction}
+            <br/>
+            ${nullPage}
+            <br/>
             <div class="clearfix">
                 <button type="button" onclick="document.getElementById('id01').style.display='none'"
                         class="cancelbtn">
                     Cancel
                 </button>
-                <button type="submit" class="signupbtn">Sign Up</button>
+                <button type="submit" class="signupbtn" value="Log out">Sign Up</button>
             </div>
         </div>
     </form>
@@ -64,26 +71,16 @@
             <br/>
             ${nullPage}
             <br/>
-            <input type="submit" class="signupbtn" value="Log in">
+            <div class="clearfix">
+                <button type="button" onclick="document.getElementById('id02').style.display='none'"
+                        class="cancelbtn">
+                    Cancel
+                </button>
+                <button type="submit" class="signupbtn" value="Log in">Log In</button>
+            </div>
         </div>
     </form>
 </div>
-
-<%--<form name="loginForm" method="POST" action="controller">--%>
-<%--<input type="hidden" name="command" value="login"/>--%>
-<%--Login:<br/>--%>
-<%--<input type="text" name="login" value=""/>--%>
-<%--<br/>Password:<br/>--%>
-<%--<input type="password" name="password" value=""/>--%>
-<%--<br/>--%>
-<%--${errorLoginPassMessage}--%>
-<%--<br/>--%>
-<%--${wrongAction}--%>
-<%--<br/>--%>
-<%--${nullPage}--%>
-<%--<br/>--%>
-<%--<input type="submit" value="Log in"/>--%>
-<%--</form>--%>
 <hr/>
 </body>
 </html>

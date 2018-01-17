@@ -1,4 +1,3 @@
-
 <%@ page import="java.util.List" %>
 <%@ page import="classes.entity.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -19,10 +18,11 @@
 %>
 
     <style>
-        th{
+        th {
             background-color: #2BC430;
         }
-        td{
+
+        td {
             background-color: #149DC7;
         }
     </style>
@@ -36,23 +36,34 @@
         Valera : <%=eList%>
         <c:if test="${not empty eList}">
             <div>
-                <table border="1" cellpadding="5">
-                    <caption><h2>Users</h2></caption>
-                    <tr>
-                        <th>Name</th>
-                        <th>Password</th>
-                        <th>Age</th>
-                    </tr>
-                    <c:forEach items="${eList}" var="item">
+                <form class="modal-content" action="controller">
+                    <input type="hidden" name="command" value="delete"/>
+
+                    <table border="1" cellpadding="5">
+                        <caption><h2>Users</h2></caption>
                         <tr>
-                            <td><c:out value="${item.name}"/></td>
-                            <td><c:out value="${item.password}"/></td>
-                            <td><c:out value="${item.age}"/></td>
-                            <%--<td><c:out value="${item.sale}"/></td>--%>
+                            <th>Name</th>
+                            <th>Password</th>
+                            <th>Age</th>
                         </tr>
-                    </c:forEach>
-                </table>
-                <input type=button value="Back" onCLick="history.back()">
+                        <c:forEach items="${eList}" var="item">
+                            <tr>
+                                <td><c:out value="${item.name}"/></td>
+
+                                <td><c:out value="${item.password}"/></td>
+                                <td><c:out value="${item.age}"/>
+                                </td>
+                                <td>
+                                    <c:out value="${item._id.$oid}"/>
+                                </td>
+                                <td style="background-color:white; border:0">
+                                    <button name="ids" value="${item._id.$oid}" type="submit">-</button>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                    <input type=button value="Back" onCLick="history.back()">
+                </form>
             </div>
         </c:if>
     </table>
