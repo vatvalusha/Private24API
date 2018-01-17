@@ -18,6 +18,16 @@ public enum CommandEnum {
         {
             this.command = new Users();
         }
+    },
+    REGISTRATION {
+        {
+            this.command = new RegistrationSuccessful();
+        }
+    },
+    DELETE {
+        {
+            this.command = new DeleteUser();
+        }
     };
     ActionCommand command;
 
