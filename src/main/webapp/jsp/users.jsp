@@ -26,46 +26,64 @@
             background-color: #149DC7;
         }
     </style>
+    <script src="/js/users.js"></script>
     <html>
     <head>
         <meta charset="ISO-8859-1">
         <title>Insert title here</title>
     </head>
     <body align="center">
-    <table>
-        Valera : <%=eList%>
-        <c:if test="${not empty eList}">
-            <div>
-                <form class="modal-content" action="controller">
-                    <input type="hidden" name="command" value="delete"/>
+    Valera : <%=eList%>
+    <c:if test="${not empty eList}">
+        <div>
+            <form class="modal-content" action="controller">
+                <input type="hidden" name="command" value="delete"/>
+                <%--<table border="1" cellpadding="5">--%>
+                <caption><h2>Users</h2></caption>
+                <div style="width: 100%; padding-top: 5px;">
+                    <output style="display: inline-block;">Name</output>
+                    <output style="display: inline-block;">Password</output>
+                    <output style="display: inline-block;">Age</output>
+                </div>
+                <fieldset style="background-color:white; border:0" id="2" disabled>
+                    <c:forEach items="${eList}" var="item">
+                        <div style="width: 100%; padding-top: 5px;">
+                            <input name="name${item._id.$oid}" style="display: inline-block;" type="text"
+                                   value="${item.name}"/>
+                            <input name="password${item._id.$oid}" style="display: inline-block;" type="text"
+                                   value="${item.password}"/></td>
+                            <input name="age${item._id.$oid}" style="display: inline-block;" type="text"
+                                   value="${item.age}"/>
+                            <button name="ids" value="${item._id.$oid}" type="submit">-</button>
+                        </div>
+                    </c:forEach>
+                </fieldset>
 
-                    <table border="1" cellpadding="5">
-                        <caption><h2>Users</h2></caption>
-                        <tr>
-                            <th>Name</th>
-                            <th>Password</th>
-                            <th>Age</th>
-                        </tr>
-                        <c:forEach items="${eList}" var="item">
-                            <tr>
-                                <td><c:out value="${item.name}"/></td>
+            </form>
+            <form class="modal-content" action="controller">
+                <input type="hidden" name="command" value="update"/>
+                <div>
+                    <div id="id1" style="display:inline-block">
+                        <button name="updateUser" style="padding-right: 5px;"
+                                value="${item._id.$oid}"
+                                onclick="disableInput(2)" type="button">Update
+                        </button>
+                    </div>
 
-                                <td><c:out value="${item.password}"/></td>
-                                <td><c:out value="${item.age}"/>
-                                </td>
-                                <td>
-                                    <c:out value="${item._id.$oid}"/>
-                                </td>
-                                <td style="background-color:white; border:0">
-                                    <button name="ids" value="${item._id.$oid}" type="submit">-</button>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </table>
-                    <input type=button value="Back" onCLick="history.back()">
-                </form>
-            </div>
-        </c:if>
-    </table>
+                    <div id="id2" style="display: none">
+                        <button name="updateUser" style="padding-right: 5px;"
+                                value="${item._id.$oid}"
+                        <%--onclick="disableInput(2)" --%>
+                                display="none" type="submit">Confirm Update
+                        </button>
+                    </div>
+                    <div style="display: inline-block">
+                        <input type=button value="Back" onCLick="history.back()">
+                    </div>
+                </div>
+            </form>
+            <%--########################################################################--%>
+        </div>
+    </c:if>
     </body>
     </html>
