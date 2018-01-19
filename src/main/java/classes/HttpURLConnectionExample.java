@@ -3,6 +3,7 @@ package classes;
 import classes.MongoDAO.MongoInformation;
 import classes.dao.MongoDBConnection;
 import classes.entity.User;
+import classes.servlet.Commands.ConfigurationManager;
 import classes.servlet.logiHandle.UserLogic;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,18 +31,24 @@ public class HttpURLConnectionExample {
 
     public static void main(String[] args) throws Exception {
 
-        User user = new User();
-        user.setAge(40);
-        user.setName("Vovan");
-        user.setPassword("security");
-        User.Oid ll = user.new Oid();
-        ll.set$oid("5a5f2c50e2f90c3dcc538c54");
-        user.set_id(ll);
+//        User user = new User();
+//        user.setAge(40);
+//        user.setName("Vovan");
+//        user.setPassword("security");
+//        User.Oid ll = user.new Oid();
+//        ll.set$oid("5a5f2c50e2f90c3dcc538c54");
+//        user.set_id(ll);
+//
+//        MongoInformation mongoInformation = new MongoInformation();
+//        System.out.println(mongoInformation.getAllUsers());
+//        mongoInformation.updateUser(user);
+//        System.out.println(mongoInformation.getAllUsers());
+//
+//
 
-        MongoInformation mongoInformation = new MongoInformation();
-        System.out.println(mongoInformation.getAllUsers());
-        mongoInformation.updateUser(user);
-        System.out.println(mongoInformation.getAllUsers());
+        String ss =ConfigurationManager.getProperty("message.loginerror");
+        System.out.println(ss);
+
 
 //        System.out.println(user + user.get_id().get$oid());
 //        System.out.println(mongoInformation.insertUser(user));
