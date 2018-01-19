@@ -6,6 +6,7 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+import com.mongodb.client.MongoDatabase;
 
 import java.net.UnknownHostException;
 
@@ -22,19 +23,15 @@ public class MongoDBConnection extends DAOFactory {
         return ourInstance;
     }
 
-    private MongoDBConnection() {}
+    private MongoDBConnection() {
+    }
 
-    public DB getCollection() {
+    public MongoDatabase getCollection() {
         MongoClient mongoClient = null;
-        try {
-            mongoClient = new MongoClient(new MongoClientURI(MONGO_URL));
-            DB database = mongoClient.getDB(DD_NAME);
+        mongoClient = new MongoClient("localhost", 27017);
+        MongoDatabase database = mongoClient.getDatabase(DD_NAME);
 //            DBCollection collection = database.getCollection("information");
-            return database;
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return database;
     }
 
     @Override
