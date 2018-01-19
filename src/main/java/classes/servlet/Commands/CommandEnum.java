@@ -28,6 +28,11 @@ public enum CommandEnum {
         {
             this.command = new DeleteUser();
         }
+    },
+    UPDATE{
+        {
+            this.command = new UpdateUsers();
+        }
     };
     ActionCommand command;
 

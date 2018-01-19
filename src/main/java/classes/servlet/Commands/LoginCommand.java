@@ -20,13 +20,13 @@ public class LoginCommand implements ActionCommand {
         HttpSession session = request.getSession(true);
         if (LoginLogic.checkLogin(login, pass)) {
             session.setAttribute("user", login);
-//            page = ConfigurationManager.getProperty("path.page.main");
-            page = "/jsp/main.jsp";
+            page = ConfigurationManager.getProperty("path.page.main");
+//            page = "/jsp/main.jsp";
         } else {
-//            request.setAttribute("errorLoginPassMessage", MessageManager.getProperty("message.loginerror"));
-            session.setAttribute("errorLoginPassMessage", "Incorrect login or password.");
-//            page = ConfigurationManager.getProperty("path.page.login");
-            page = "/jsp/login.jsp";
+            request.setAttribute("errorLoginPassMessage", MessageManager.getProperty("message.loginerror"));
+//            session.setAttribute("errorLoginPassMessage", "Incorrect login or password.");
+            page = ConfigurationManager.getProperty("path.page.login");
+//            page = "/jsp/login.jsp";
         }
         return page;
     }

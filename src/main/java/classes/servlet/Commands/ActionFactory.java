@@ -26,11 +26,13 @@ public class ActionFactory {
         ActionCommand current = new EmptyCommand();
 // извлечение имени команды из запроса
         String action = request.getParameter("command");
+        String update = request.getParameter("update");
         if (action == null || action.isEmpty()) {
             System.out.println("EMPTY");
             return current;
         }
         try {
+            System.out.println(update);
             System.out.println("NOT EMPTY");
             CommandEnum currentEnum = CommandEnum.valueOf(action.toUpperCase());
             current = currentEnum.getCurrentCommand();
